@@ -13,6 +13,16 @@ function create() {
         })
 }
 
-module.exports = {
-    create
+function deleteAll() {
+    User.remove()
+        .then(function (user) {
+        })
+        .catch(function (err) {
+            console.log('error removed');
+        })
 }
+
+module.exports = {
+    create,
+    deleteAll
+};

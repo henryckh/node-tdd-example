@@ -1,26 +1,34 @@
 const mongoose = require('mongoose');
-const db = require('../db');
-
-const userController = require('../controller/UserController');
-
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 const expect = chai.expect;
+const sinon = require('sinon');
+
+const db = require('../db');
+const userController = require('../controller/UserController');
 
 // user module chai promised
 describe('User Promised module', () => {
     describe('Create new user', () => {
-
-        beforeEach(function (done) {
+        before(function (done) {
             db.connect(()=> {
                 done();
-            })
+            });
+            userController.deleteAll();
         });
 
-        it('should show the user document', (done) => {
-            expect(userController.create()).to.eventually.be.a('string');
-            done();
+        it('should show the user document', () => {
+            return expect(userController.create()).to.eventually.has.property('name');
         })
     })
-})
+});
+
+// test internal methods
+describe('Test internal winston logger', () => {
+    describe('Logger info', () => {
+        it('should call winston if name is all lowercase', () => {
+            sinon.stub(logger)
+        });
+    })
+});
