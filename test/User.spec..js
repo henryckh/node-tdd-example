@@ -1,6 +1,12 @@
 const mongoose = require('mongoose');
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
+const winston = require('winston');
+const logger = new winston.Logger({
+    transports: [
+        new (winston.transports.Console)()
+    ]
+});
 chai.use(chaiAsPromised);
 const expect = chai.expect;
 const sinon = require('sinon');
@@ -28,7 +34,7 @@ describe('User Promised module', () => {
 describe('Test internal winston logger', () => {
     describe('Logger info', () => {
         it('should call winston if name is all lowercase', () => {
-            sinon.stub(logger)
+            sinon.spy(logger, 'info');
         });
     })
 });
