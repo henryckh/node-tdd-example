@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const chai = require('chai');
+const sinonChai = require('sinon-chai');
+const sinon = require('sinon');
 const chaiAsPromised = require('chai-as-promised');
 const winston = require('winston');
 const logger = new winston.Logger({
@@ -8,8 +10,8 @@ const logger = new winston.Logger({
     ]
 });
 chai.use(chaiAsPromised);
+chai.use(sinonChai);
 const expect = chai.expect;
-const sinon = require('sinon');
 
 const db = require('../db');
 const userController = require('../controller/UserController');
@@ -17,6 +19,8 @@ const userController = require('../controller/UserController');
 // user module chai promised
 describe('User Promised module', () => {
     describe('Create new user', () => {
+
+        // clean database
         before(function (done) {
             db.connect(()=> {
                 done();
@@ -24,9 +28,15 @@ describe('User Promised module', () => {
             userController.deleteAll();
         });
 
+        // create database
         it('should show the user document', () => {
             return expect(userController.create()).to.eventually.has.property('name');
-        })
+        });
+
+        // delete database
+        // after(function () {
+        //     userController.deleteAll();
+        // })
     })
 });
 
@@ -35,6 +45,8 @@ describe('Test internal winston logger', () => {
     describe('Logger info', () => {
         it('should call winston if name is all lowercase', () => {
             sinon.spy(logger, 'info');
+            logger.info('hello world');
+            expect(logger.info).to.have.been.calledWith('hello world');
         });
     })
 });
