@@ -28,12 +28,12 @@ describe('User Promised module', () => {
             userController.deleteAll();
         });
 
-        // create database
+        // create user document
         it('should show the user document', () => {
             return expect(userController.create()).to.eventually.has.property('name');
         });
 
-        // delete database
+        // delete user document
         // after(function () {
         //     userController.deleteAll();
         // })

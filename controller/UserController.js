@@ -1,9 +1,6 @@
 const User = require('../model/User');
 
-function create() {
-    let user = new User({
-        name: 'hello'
-    });
+function create(user) {
     return user.save()
         .then((user)=> {
             return user;
