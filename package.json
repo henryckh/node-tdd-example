@@ -6,6 +6,16 @@
   "scripts": {
     "test": "mocha **.spec.js"
   },
+  "keywords": [
+    "chai",
+    "tdd",
+    "nodejs",
+    "javascript",
+    "sinon",
+    "expect",
+    "es6",
+    "mongo"
+  ],
   "author": "henry",
   "license": "ISC",
   "devDependencies": {
