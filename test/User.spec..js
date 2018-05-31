@@ -15,6 +15,7 @@ const expect = chai.expect;
 
 const db = require('../db');
 const userController = require('../controller/UserController');
+const User = require('../model/User');
 
 // user module chai promised
 describe('User Promised module', () => {
@@ -30,7 +31,10 @@ describe('User Promised module', () => {
 
         // create user document
         it('should show the user document', () => {
-            return expect(userController.create()).to.eventually.has.property('name');
+            let tom = new User({
+                name: "Tom"
+            });
+            return expect(userController.create(tom)).to.eventually.has.property('name');
         });
 
         // delete user document
