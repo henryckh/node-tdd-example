@@ -17,37 +17,28 @@ const db = require('../db');
 const userController = require('../controller/UserController');
 const User = require('../model/User');
 
-// user module chai promised
-describe('User Promised module', () => {
-    describe('Create new user', () => {
+// test User Controller
+describe('User Controller', () => {
+    describe('create new user', () => {
 
-        // clean database
-        before(function (done) {
+        before(() => {
             db.connect(()=> {
-                done();
             });
-            userController.deleteAll();
         });
 
-        // create user document
-        it('should show the user document', () => {
+        it('should return saved document with property "name"', () => {
             let tom = new User({
                 name: "Tom"
             });
             return expect(userController.create(tom)).to.eventually.has.property('name');
         });
-
-        // delete user document
-        // after(function () {
-        //     userController.deleteAll();
-        // })
     })
 });
 
-// test internal methods
-describe('Test internal winston logger', () => {
-    describe('Logger info', () => {
-        it('should call winston if name is all lowercase', () => {
+// test logging method
+describe('Winston Log', () => {
+    describe('log an info message', () => {
+        it('should logged "hello world"', () => {
             sinon.spy(logger, 'info');
             logger.info('hello world');
             expect(logger.info).to.have.been.calledWith('hello world');
