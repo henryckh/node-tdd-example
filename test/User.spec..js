@@ -19,7 +19,7 @@ const User = require('../model/User');
 
 // test User Controller
 describe('User Controller', () => {
-    describe('create new user', () => {
+    describe('Create a new user', () => {
 
         before(() => {
             db.connect(()=> {
@@ -37,7 +37,7 @@ describe('User Controller', () => {
 
 // test logging method
 describe('Winston Log', () => {
-    describe('log an info message', () => {
+    describe('Log an info level message', () => {
         it('should logged "hello world"', () => {
             sinon.spy(logger, 'info');
             logger.info('hello world');
