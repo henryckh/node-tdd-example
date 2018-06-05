@@ -35,13 +35,33 @@ describe('User Controller', () => {
     })
 });
 
-// test logging method
+// test logging method without calling
 describe('Winston Log', () => {
     describe('Log an info level message', () => {
         it('should logged "hello world"', () => {
-            sinon.spy(logger, 'info');
+            sinon.stub(logger, 'info');
             logger.info('hello world');
             expect(logger.info).to.have.been.calledWith('hello world');
+            logger.info.restore();
+        });
+    })
+});
+
+
+// test logging with sandbox
+describe('Sanbox Winston Log', () => {
+    describe('Log an info level message in sandbox', () => {
+
+        beforeEach(() => {
+            this.sandbox = sinon.createSandbox();
+        });
+        it('should logged "hello world"', () => {
+            sinon.stub(logger, 'info');
+            logger.info('hello world');
+            expect(logger.info).to.have.been.calledWith('hello world');
+        });
+        afterEach(() => {
+            this.sandbox.restore()
         });
     })
 });
