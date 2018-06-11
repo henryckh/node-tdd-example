@@ -1,6 +1,20 @@
 # node-tdd-example
 Project example using Mocha, chai to do test driven development for Node.js. 
 
+## Prerequisites
+Install Mocha globally by running:
+```sh
+$ npm install -g mocha
+```
+
+During filling npm init, input mocha for "test command", 
+Your package.json file should contain the following field:
+```js
+"script": {
+    "test": "mocha"
+}
+````
+
 ## Test http request
 Use supertest to test api from express
 ```js
