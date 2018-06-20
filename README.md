@@ -7,6 +7,8 @@ Install Mocha globally by running:
 $ npm install -g mocha
 ```
 
+Install mongodb and run at port 27017
+
 During filling npm init, input mocha for "test command", 
 Your package.json file should contain the following field:
 ```js
