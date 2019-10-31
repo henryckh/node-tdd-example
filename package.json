@@ -28,7 +28,7 @@
   "dependencies": {
     "express": "^4.16.3",
     "knex": "^0.14.6",
-    "mongoose": "^5.5.11",
+    "mongoose": "^5.7.5",
     "pg": "^7.4.1",
     "sinon": "^5.0.10",
     "winston": "^2.4.2"
